@@ -53,9 +53,7 @@ function clean(str) {
         str = str.replace(/<[^>]*>?/gm, "");
     } while (str !== previous);
     let regex = /&#(\d+);/g;
-    str = str.replace(regex, (match, dec) => {
-        String.fromCharCode(dec);
-    });
+    str = str.replace(regex, (match, dec) => String.fromCharCode(dec));
 
     return str;
 }
