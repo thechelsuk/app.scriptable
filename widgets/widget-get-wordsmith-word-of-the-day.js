@@ -47,8 +47,11 @@ function clean(str) {
     str = str.replace("&amp;#8221;", "'");
     str = str.replace("&amp;#8220;", "'");
     str = unescapeHTML(str);
-    str = str.replace(/<[^>]*>?/gm, "");
-    str = str.replace(/<img[^>]*>/g, "");
+    let previous;
+    do {
+        previous = str;
+        str = str.replace(/<[^>]*>?/gm, "");
+    } while (str !== previous);
     let regex = /&#(\d+);/g;
     str = str.replace(regex, (match, dec) => {
         String.fromCharCode(dec);
